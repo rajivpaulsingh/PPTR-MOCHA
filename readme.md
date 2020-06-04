@@ -5,3 +5,4 @@
 5. Create .babelrc file and add configuration
 6. Add test, clean and build in the package.json scripts
 7. You need to first build it using the command: npm run build, then run the test and then clean
+8. Use mocha-steps library to replace the it() with steps()
