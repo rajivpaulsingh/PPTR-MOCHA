@@ -1,5 +1,6 @@
 // import puppeteer from 'puppeteer';
 import { step } from 'mocha-steps';
+import { expect } from 'chai';
 
 import Page from "../builder";
 
@@ -42,5 +43,8 @@ describe('Mocha Steps Demo', () => {
     step("Should click link and type into text", async () => {
         await page.goto("http://zero.webappsecurity.com/index.html");
         await page.waitAndClick("#onlineBankingMenu");
+
+        const signInButton = await page.isElementVisible('#signin_button');
+        expect(signInButton).to.be.true;
     });
 })

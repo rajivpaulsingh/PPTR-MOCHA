@@ -59,13 +59,13 @@ export default class Builder {
 
     async getText(selector) {
         await this.page.waitForSelector(selector);
-        const text = await this.page.$eval(selector, eval => eval.innerHTML);
+        const text = await this.page.$eval(selector, element => element.innerHTML);
         return text;
     }
 
     async getCount(selector) {
         await this.page.waitForSelector(selector);
-        const count = await this.page.$$eval(selector, eval => eval.length);
+        const count = await this.page.$$eval(selector, element => element.length);
         return count;
     }
 
