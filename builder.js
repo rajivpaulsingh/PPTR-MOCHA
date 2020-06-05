@@ -17,5 +17,21 @@ export default class Builder {
         const page = await browser.newPage();
         const extendedPage = new Builder(page);
         await page.setDefaultTimeout(10000);
+
+        switch(viewport) {
+            case "Mobile":
+                const mobileViewPort = puppeteer.devices['iPhone X'];
+                await page.emulate(mobileViewPort);
+                break;
+            case "Tablet":
+                const tabletViewPort = puppeteer.devices['iPad landscape'];
+                await page.emulate(mobileViewPort);
+                break;
+            case "Desktop":
+                await page.setViewport({ width: 800, height: 600 });
+                break;       
+            default:
+                throw new Error('The supported devices are only Mobile | Tablet | Desktop')             
+        }
     }
 }
