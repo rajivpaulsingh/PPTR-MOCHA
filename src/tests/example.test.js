@@ -44,24 +44,28 @@ describe('Mocha Steps Demo', () => {
         await page.goto("http://zero.webappsecurity.com/index.html");
         await page.waitAndClick("#onlineBankingMenu");
 
-        const signInButton = await page.isElementVisible('#signin_button');
-        expect(signInButton).to.be.true;
+        // const signInButton = await page.isElementVisible('#signin_button');
+        // expect(signInButton).to.be.true;
+        expect(await page.isElementVisible('#signin_button')).to.be.true;
     });
 
     step('Should display login form', async () => {
         await page.waitAndClick('#signin_button');
-        const loginForm = await page.isElementVisible('#login_form');
-        expect(loginForm).to.be.true;
-        const signInButton = await page.isElementVisible('#signin_button');
-        expect(signInButton).to.be.false;
+        // const loginForm = await page.isElementVisible('#login_form');
+        // expect(loginForm).to.be.true;
+        // const signInButton = await page.isElementVisible('#signin_button');
+        // expect(signInButton).to.be.false;
+        expect(await page.isElementVisible('#login_form')).to.be.true;
+        expect(await page.isElementVisible('#signin_button')).to.be.false;
     });
 
     step('Should login to the application', async () => {
         await page.waitAndType('#user_login', "username");
         await page.waitAndType('#user_password', "password");
         await page.waitAndClick('.btn-primary');
-        const navbar = await page.isElementVisible('.nav-tabs');
-        expect(navbar).to.be.true;
+        // const navbar = await page.isElementVisible('.nav-tabs');
+        // expect(navbar).to.be.true;
+        expect(await page.isElementVisible('.nav-tabs')).to.be.true;
 
     })
 })
