@@ -67,5 +67,11 @@ describe('Mocha Steps Demo', () => {
         // expect(navbar).to.be.true;
         expect(await page.isElementVisible('.nav-tabs')).to.be.true;
 
-    })
+    });
+
+    step('Should have 6 navbar links', async () => {
+        // const navbarLinksCount = await page.getCount('.nav-tabs li');
+        // expect(navbarLinksCount).to.equal(6);
+        expect(await page.getCount('.nav-tabs li')).to.equal(6);
+    });
 })
