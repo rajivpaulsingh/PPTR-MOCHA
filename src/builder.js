@@ -77,4 +77,24 @@ export default class Builder {
         }
         await elements(0).click();
     }
+
+    async isElementVisible(selector) {
+        let visible = true;
+        await this.page
+        .waitForSelector(selector, { visible: true, timeout: 3000 })
+        .catch(() => {
+            visible = false;
+        });
+        return visible;
+    }
+
+    async isXPathVisible(selector) {
+        let visible = true;
+        await this.page
+        .waitForXPath(selector, { visible: true, timeout: 3000 })
+        .catch(() => {
+            visible = false;
+        });
+        return visible;
+    }
 }
