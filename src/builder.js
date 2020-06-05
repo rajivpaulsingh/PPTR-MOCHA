@@ -56,4 +56,25 @@ export default class Builder {
         await this.page.waitForSelector(selector);
         await this.page.type(selector, text);
     }
+
+    async getText(selector) {
+        await this.page.waitForSelector(selector);
+        const text = await this.page.$eval(selector, eval => eval.innerHTML);
+        return text;
+    }
+
+    async getCount(selector) {
+        await this.page.waitForSelector(selector);
+        const count = await this.page.$$eval(selector, eval => eval.length);
+        return count;
+    }
+
+    async waitForXPathAndClick(xpath) {
+        await this.page.waitForXPath(xpath);
+        const elements = await this.page.$x(xpath);
+        if(elements.length > 1) {
+            console.warn("waitForXPathAndClick returned more than one result");
+        }
+        await elements(0).click();
+    }
 }
