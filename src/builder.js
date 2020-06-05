@@ -34,7 +34,7 @@ export default class Builder {
                 throw new Error('The supported devices are only Mobile | Tablet | Desktop')             
         }
 
-        //JavaScript proxy
+        //JavaScript proxy to merge all objects together
         return new Proxy(extendedPage, {
             get: function(_target, property) {
                 return extendedPage[property] || browser[property] || page[property];

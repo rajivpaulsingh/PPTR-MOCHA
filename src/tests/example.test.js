@@ -1,22 +1,26 @@
-import puppeteer from 'puppeteer';
+// import puppeteer from 'puppeteer';
 import { step } from 'mocha-steps';
+
+import Page from "../builder";
 
 describe('Mocha Steps Demo', () => {
 
-    let browser;
+    // let browser;
     let page;
 
     before(async () => {
-        browser = await puppeteer.launch( {
-            headless: true,
-            slowMo: 0
-        });
-        page = await browser.newPage();
-        await page.setDefaultTimeout(7000);
+        // browser = await puppeteer.launch( {
+        //     headless: true,
+        //     slowMo: 0
+        // });
+        // page = await browser.newPage();
+        // await page.setDefaultTimeout(7000);
+        page = await Page.build("Desktop");
     });
 
     after(async () => {
-        await browser.close();
+        // await browser.close();
+        await page.close();
     })
 
     step("Should load google homepage", async () => {
