@@ -3,11 +3,13 @@ import { step } from 'mocha-steps';
 import { expect } from 'chai';
 
 import Page from "../builder";
+import LoginPage from "../pages/LoginPage";
 
 describe('Mocha Steps Demo', () => {
 
     // let browser;
     let page;
+    let loginPage;
 
     before(async () => {
         // browser = await puppeteer.launch( {
@@ -17,6 +19,7 @@ describe('Mocha Steps Demo', () => {
         // page = await browser.newPage();
         // await page.setDefaultTimeout(7000);
         page = await Page.build("Desktop");
+        loginPage = await new LoginPage(page);
     });
 
     after(async () => {
@@ -60,9 +63,10 @@ describe('Mocha Steps Demo', () => {
     });
 
     step('Should login to the application', async () => {
-        await page.waitAndType('#user_login', "username");
-        await page.waitAndType('#user_password', "password");
-        await page.waitAndClick('.btn-primary');
+        // await page.waitAndType('#user_login', "username");
+        // await page.waitAndType('#user_password', "password");
+        // await page.waitAndClick('.btn-primary');
+        await loginPage.login("username", "password");
         // const navbar = await page.isElementVisible('.nav-tabs');
         // expect(navbar).to.be.true;
         expect(await page.isElementVisible('.nav-tabs')).to.be.true;
