@@ -33,5 +33,16 @@ export default class Builder {
             default:
                 throw new Error('The supported devices are only Mobile | Tablet | Desktop')             
         }
+
+        //JavaScript proxy
+        return new Proxy(extendedPage, {
+            get: function(_target, property) {
+                return extendedPage[property] || browser[property] || page[property];
+            }
+        });
+    }
+
+    constructor(page) {
+        this.page = page;
     }
 }
